@@ -321,7 +321,7 @@ div {
     element cs:date {
       date.form,
       delimiter,
-      font-formatting,
+      item-formatting,
       text-case,
       locale.date.date-part+
     }
@@ -340,7 +340,7 @@ div {
   
   locale.date.date-part =
     element cs:date-part {
-      affixes, font-formatting, text-case, (day | month | year)
+      affixes, item-formatting, text-case, (day | month | year)
     }
   
   locale.terms = element cs:terms { terms.term+ }
@@ -416,11 +416,11 @@ div {
   
   citation.layout =
     element cs:layout {
-      affixes, delimiter, font-formatting, rendering-element+
+      affixes, delimiter, item-formatting, rendering-element+
     }
   
   bibliography.layout =
-    element cs:layout { affixes, font-formatting, rendering-element+ }
+    element cs:layout { affixes, item-formatting, rendering-element+ }
 }
 [ a:documentation [ xhtml:h2 [ "cs:names Rendering Element" ] ] ]
 div {
@@ -692,7 +692,7 @@ div {
       text.attributes,
       affixes,
       display,
-      font-formatting,
+      item-formatting,
       quotes,
       strip-periods,
       text-case
@@ -772,7 +772,7 @@ div {
       affixes,
       delimiter,
       display,
-      font-formatting,
+      item-formatting,
       rendering-element+
     }
   
@@ -1129,7 +1129,9 @@ div {
         ## amount.
         "indent"
     }?
-  
+
+  item-formatting = font-formatting, link?
+
   ## The font-formatting attributes are based on those of CSS and XSL-FO.
   font-formatting =
     [ a:defaultValue = "normal" ]
@@ -1142,7 +1144,11 @@ div {
     attribute text-decoration { "none" | "underline" }?,
     [ a:defaultValue = "baseline" ]
     attribute vertical-align { "baseline" | "sup" | "sub" }?
-  
+
+  ## Desigates that the rendered element should be hyperlinked where relevant
+  ## URL is included.
+  link = attribute link { "yes" }
+
   quotes =
     
     ## When set to "true", quotes are placed around the rendered text.
